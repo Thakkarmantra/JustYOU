@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Just For You ❤️</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #fbc2cc, #fad0c4);
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .card {
+        background: rgba(255, 245, 248, 0.92);
+        padding: 36px 30px;
+        border-radius: 26px;
+        max-width: 380px;
+        box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+        text-align: center;
+        animation: fadeIn 1.4s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .heart {
+        font-size: 54px;
+        margin-bottom: 10px;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%,100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+    }
+
+    h1 {
+        font-family: 'Playfair Display', serif;
+        color: #8b2f45;
+        font-size: 24px;
+        margin: 14px 0;
+    }
+
+    p {
+        color: #4a4a4a;
+        font-size: 15.5px;
+        line-height: 1.8;
+        margin: 18px 0;
+    }
+
+    .question {
+        font-size: 26px;
+        margin-top: 22px;
+    }
+
+    .buttons {
+        margin-top: 28px;
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    button {
+        padding: 12px 26px;
+        font-size: 15px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+        background: #8b2f45;
+        color: #ffffff;
+        border: none;
+        box-shadow: 0 10px 22px rgba(139,47,69,0.35);
+    }
+
+    #yesBtn:hover {
+        transform: translateY(-2px);
+    }
+
+    #noBtn {
+        background: transparent;
+        color: #8b2f45;
+        border: 1.5px solid #8b2f45;
+    }
+
+    #noBtn:hover {
+        background: rgba(139,47,69,0.08);
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="heart">❤️</div>
+
+    <h1>Something I Wanted to Say</h1>
+
+    <p>
+        Some feelings grow quietly,  
+        without asking for attention.
+        <br><br>
+        I didn’t rush them,  
+        and I didn’t ignore them either.
+        <br><br>
+        I just wanted to be honest —  
+        gently, sincerely,  
+        and with respect for you.
+    </p>
+
+    <h1 class="question">Will you be mine? 🫣</h1>
+
+    <div class="buttons">
+        <button id="noBtn" onclick="noClicked()">Not now</button>
+        <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
+    </div>
+</div>
+
+<script>
+const ENDPOINT = "https://formspree.io/f/xreagjwj";
+
+function logClick(choice) {
+    fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            answer: choice,
+            time: new Date().toISOString(),
+            userAgent: navigator.userAgent
+        })
+    });
+}
+
+function yesClicked() {
+    logClick("YES");
+
+    document.body.innerHTML = `
+        <div style="
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#fbc2cc,#fad0c4);
+            text-align:center;
+        ">
+            <div>
+                <h1 style="font-family:'Playfair Display',serif;color:#8b2f45;">
+                    Thank You ❤️
+                </h1>
+                <p style="font-family:'Poppins',sans-serif;color:#4a4a4a;font-size:18px;">
+                    I’ll take care of this feeling.<br>
+                    Gently. Always.
+                </p>
+                <div style="font-size:64px;">💖</div>
+            </div>
+        </div>
+    `;
+}
+
+function noClicked() {
+    logClick("NO");
+    alert("That’s okay ❤️ Your feelings matter. Take all the time you need.");
+}
+</script>
+
+</body>
+</html>
+
