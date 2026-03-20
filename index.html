@@ -6,15 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Just For You ❤️</title>
 
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;500&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -30,7 +25,7 @@
             background: rgba(255, 245, 248, 0.92);
             padding: 36px 30px;
             border-radius: 26px;
-            max-width: 400px;
+            max-width: 380px;
             width: 90%;
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
             text-align: center;
@@ -67,10 +62,7 @@
             margin: 18px 0;
         }
 
-        .question {
-            font-size: 26px;
-            margin-top: 22px;
-        }
+        .question { font-size: 26px; margin-top: 22px; }
 
         .buttons {
             margin-top: 28px;
@@ -91,11 +83,10 @@
 
         #yesBtn {
             background: #8b2f45;
-            color: #ffffff;
+            color: #fff;
             border: none;
             box-shadow: 0 10px 22px rgba(139, 47, 69, 0.35);
         }
-
         #yesBtn:hover { transform: translateY(-2px); }
 
         #noBtn {
@@ -103,71 +94,51 @@
             color: #8b2f45;
             border: 1.5px solid #8b2f45;
         }
-
         #noBtn:hover { background: rgba(139, 47, 69, 0.08); }
 
-        /* ── GitHub login screen ── */
-        #loginScreen {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 18px;
+        /* ── Email screen ── */
+        .email-hint {
+            font-size: 14px;
+            color: #a06070;
+            margin-bottom: 18px;
         }
 
-        #loginScreen p {
-            margin: 0;
-            font-size: 14.5px;
-            color: #6b6b6b;
+        .email-input-wrap {
+            position: relative;
+            margin-bottom: 8px;
         }
 
-        #githubBtn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #24292e;
+        .email-input-wrap input {
+            width: 100%;
+            padding: 13px 18px;
+            font-size: 15px;
+            font-family: 'Poppins', sans-serif;
+            border: 1.5px solid #e0aabb;
+            border-radius: 30px;
+            outline: none;
+            background: #fff8fa;
+            color: #3a3a3a;
+            transition: border 0.3s;
+        }
+
+        .email-input-wrap input:focus { border-color: #8b2f45; }
+
+        #continueBtn {
+            background: #8b2f45;
             color: #fff;
             border: none;
-            padding: 13px 28px;
-            font-size: 15px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            box-shadow: 0 8px 20px rgba(36,41,46,0.35);
-            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 12px;
+            box-shadow: 0 10px 22px rgba(139, 47, 69, 0.3);
         }
+        #continueBtn:hover:not(:disabled) { transform: translateY(-2px); }
+        #continueBtn:disabled { opacity: 0.55; cursor: not-allowed; }
 
-        #githubBtn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(36,41,46,0.45); }
-        #githubBtn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-
-        #githubBtn svg { flex-shrink: 0; }
-
-        .avatar {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            border: 2px solid #e8a0b0;
-            margin-bottom: 2px;
-        }
-
-        .user-badge {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(139,47,69,0.07);
-            border-radius: 14px;
-            padding: 8px 14px;
-            margin-bottom: 6px;
-            font-size: 14px;
-            color: #8b2f45;
-            font-weight: 500;
-        }
-
-        .status-msg {
-            font-size: 13px;
-            color: #999;
-            margin-top: -10px;
-            min-height: 20px;
+        .err-msg {
+            font-size: 12.5px;
+            color: #c0392b;
+            min-height: 18px;
+            margin-top: 4px;
         }
 
         #mainCard { display: none; }
@@ -176,29 +147,23 @@
 
 <body>
 
-    <!-- LOGIN SCREEN -->
+    <!-- EMAIL SCREEN -->
     <div class="card" id="loginCard">
         <div class="heart">❤️</div>
         <h1>Something I Wanted to Say</h1>
+        <p class="email-hint">Just your email, so I know it's you 🌸</p>
 
-        <div id="loginScreen">
-            <p>Please verify it's you first ✨</p>
-
-            <button id="githubBtn" onclick="loginWithGitHub()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
-                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-                </svg>
-                Continue with GitHub
-            </button>
-
-            <p class="status-msg" id="statusMsg"></p>
+        <div class="email-input-wrap">
+            <input type="email" id="emailInput" placeholder="your@email.com"
+                   onkeydown="if(event.key==='Enter') continueClicked()">
         </div>
+        <div class="err-msg" id="errMsg"></div>
+
+        <button id="continueBtn" onclick="continueClicked()">Continue ✨</button>
     </div>
 
-    <!-- MAIN CARD (shown after login) -->
+    <!-- MAIN CARD -->
     <div class="card" id="mainCard">
-        <div id="userBadge" class="user-badge"></div>
-
         <div class="heart">❤️</div>
 
         <p>
@@ -221,130 +186,64 @@
         </div>
     </div>
 
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp }                          from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
-        import { getAuth, GithubAuthProvider, signInWithPopup }
-                                                          from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
+    <script>
+        const ENDPOINT = "https://formspree.io/f/xreagjwj";
+        let submitterEmail = "";
 
-        // ──────────────────────────────────────────────
-        // 🔧 REPLACE with your Firebase project config
-        //    (Firebase Console → Project Settings → Your apps → Web app)
-        // ──────────────────────────────────────────────
-        const firebaseConfig = {
-            apiKey:            "YOUR_API_KEY",
-            authDomain:        "YOUR_PROJECT.firebaseapp.com",
-            projectId:         "YOUR_PROJECT_ID",
-            storageBucket:     "YOUR_PROJECT.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId:             "YOUR_APP_ID"
-        };
+        function continueClicked() {
+            const input = document.getElementById("emailInput");
+            const err   = document.getElementById("errMsg");
+            const email = input.value.trim();
 
-        const FORMSPREE_ENDPOINT = "https://formspree.io/f/xreagjwj";
-
-        const app      = initializeApp(firebaseConfig);
-        const auth     = getAuth(app);
-        const provider = new GithubAuthProvider();
-        // Request extra GitHub scopes so we get more profile data
-        provider.addScope("read:user");
-        provider.addScope("user:email");
-
-        let githubProfile = null;
-
-        window.loginWithGitHub = async function () {
-            const btn       = document.getElementById("githubBtn");
-            const statusMsg = document.getElementById("statusMsg");
-
-            btn.disabled   = true;
-            statusMsg.textContent = "Opening GitHub…";
-
-            try {
-                const result = await signInWithPopup(auth, provider);
-
-                // Full GitHub profile lives in additionalUserInfo.profile
-                const profile = result.additionalUserInfo?.profile || {};
-                const user    = result.user;
-
-                githubProfile = {
-                    github_id:         profile.id,
-                    github_login:      profile.login,
-                    github_name:       profile.name       || user.displayName,
-                    github_email:      profile.email      || user.email,
-                    github_avatar_url: profile.avatar_url || user.photoURL,
-                    github_bio:        profile.bio,
-                    github_company:    profile.company,
-                    github_location:   profile.location,
-                    github_blog:       profile.blog,
-                    github_public_repos:   profile.public_repos,
-                    github_followers:      profile.followers,
-                    github_following:      profile.following,
-                    github_account_created: profile.created_at,
-                    github_profile_url:    profile.html_url,
-                    accessed_at:           new Date().toISOString(),
-                };
-
-                // Show user badge
-                const badge = document.getElementById("userBadge");
-                badge.innerHTML = `
-                    <img class="avatar" src="${githubProfile.github_avatar_url}" alt="avatar">
-                    <span>@${githubProfile.github_login}</span>
-                `;
-
-                // Swap screens
-                document.getElementById("loginCard").style.display = "none";
-                document.getElementById("mainCard").style.display  = "block";
-
-            } catch (err) {
-                console.error(err);
-                statusMsg.textContent = "Login failed. Please try again.";
-                btn.disabled = false;
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                err.textContent = "Please enter a valid email address.";
+                input.focus();
+                return;
             }
-        };
 
-        async function sendToFormspree(answer) {
-            await fetch(FORMSPREE_ENDPOINT, {
+            err.textContent = "";
+            submitterEmail = email;
+
+            document.getElementById("loginCard").style.display = "none";
+            document.getElementById("mainCard").style.display  = "block";
+        }
+
+        function sendToFormspree(answer) {
+            return fetch(ENDPOINT, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    answer,
-                    ...githubProfile,
-                    user_agent: navigator.userAgent,
+                    email:      submitterEmail,
+                    answer:     answer,
+                    time:       new Date().toISOString(),
+                    userAgent:  navigator.userAgent
                 })
             });
         }
 
-        window.yesClicked = async function () {
-            await sendToFormspree("YES");
-
+        function yesClicked() {
+            sendToFormspree("YES");
             document.body.innerHTML = `
                 <div style="
-                    height:100vh;
-                    display:flex;
-                    justify-content:center;
-                    align-items:center;
-                    background:linear-gradient(135deg,#fbc2cc,#fad0c4);
+                    height:100vh;display:flex;justify-content:center;
+                    align-items:center;background:linear-gradient(135deg,#fbc2cc,#fad0c4);
                     text-align:center;
                 ">
                     <div>
-                        <h1 style="font-family:'Playfair Display',serif;color:#8b2f45;">
-                            Thank You ❤️
-                        </h1>
+                        <h1 style="font-family:'Playfair Display',serif;color:#8b2f45;">Thank You ❤️</h1>
                         <p style="font-family:'Poppins',sans-serif;color:#4a4a4a;font-size:18px;">
-                            I'll take care of this feeling.<br>
-                            Gently. Always.
+                            I'll take care of this feeling.<br>Gently. Always.
                         </p>
                         <div style="font-size:64px;">💖</div>
                     </div>
-                </div>
-            `;
-        };
+                </div>`;
+        }
 
-        window.noClicked = async function () {
-            await sendToFormspree("NO");
+        function noClicked() {
+            sendToFormspree("NO");
             alert("That's okay ❤️ Your feelings matter. Take all the time you need.");
-        };
+        }
     </script>
 
 </body>
-
 </html>
